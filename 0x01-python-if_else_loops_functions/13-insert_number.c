@@ -26,12 +26,10 @@ listint_t *insert_node(listint_t **head, int number)
 			temp = h->next;
 			h->next = new;
 			new->next = temp;
-			free(new);
 			return (*head);
 		}
 		h = h->next;
 	}
 	h->next = new;
-	free(new);
 	return (*head);
 }
