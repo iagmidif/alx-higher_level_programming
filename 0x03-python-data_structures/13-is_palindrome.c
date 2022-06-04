@@ -1,6 +1,6 @@
 #include "lists.h"
-#include <stdio.h>
-#define ARR_SIZE 512
+
+#define ARR_SIZE 1024
 
 /**
  * is_palindrome - checks if a singly linked list is a palindrome.
@@ -11,28 +11,25 @@
 int is_palindrome(listint_t **head)
 {
 	int arr[ARR_SIZE];
-	int i, start, end;
+	int i, j;
 	listint_t *h;
 
-	if (head == NULL)
-		return (1);
-	h = *head;
-	i = 0;
-	while (h != NULL)
+	i = j = 0;
+	if (head != NULL)
 	{
-		arr[i] = h->n;
-		h = h->next;
-		i++;
-	}
-	start = 0;
-	end = i - 1;
-
-	while (start < end)
-	{
-		if (arr[start] != arr[end])
-			return (0);
-		start++;
-		end--;
+		h = *head;
+		while (h != NULL)
+		{
+			arr[i] = h->n;
+			h = h->next;
+			i++;
+		}
+		while (j < (i / 2))
+		{
+			if (arr[j] != arr[i - j - 1])
+				return (0);
+			j++;
+		}
 	}
 	return (1);
 }
