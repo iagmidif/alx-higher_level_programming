@@ -20,7 +20,7 @@ void print_python_list_info(PyObject *p)
 				((PyListObject *)p)->allocated);
 		while (i < size)
 		{
-			printf("Element %d: %s\n",
+			printf("Element %zd: %s\n",
 					i, Py_TYPE(PyList_GetItem(p, i))->tp_name);
 			i++;
 		}
