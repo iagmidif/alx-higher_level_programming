@@ -1,6 +1,6 @@
 #include "lists.h"
 
-#define ARR_SIZE 1024
+#define ARR_SIZE 2048
 
 /**
  * is_palindrome - checks if a singly linked list is a palindrome.
