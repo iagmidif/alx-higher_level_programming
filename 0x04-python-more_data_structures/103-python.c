@@ -61,7 +61,7 @@ void print_python_list(PyObject *p)
 			printf("Element %d: %s\n", i, element->ob_type->tp_name);
 			if (PyBytes_Check(element))
 				print_python_bytes(element);
-			i++
+			i++;
 		}
 	}
 }
