@@ -1,0 +1,52 @@
+#!/usr/bin/python3
+"""
+Module that defines a Square class
+"""
+
+
+class Square:
+    """
+    A class that defines a Square
+    """
+
+    def __init__(self, size=0):
+        """Instantiation function"""
+        self.__size = size
+
+    def area(self):
+        """
+        A public instance method
+
+        Args:
+
+        Returns:
+            the area of the square
+        """
+        return (self.__size ** 2)
+
+    @property
+    def size(self):
+        """
+        Getter function for the private attribute size
+
+        Args:
+
+        Returns:
+            the value of the private attribute size
+        """
+        return self.__size
+
+    @size.setter
+    def size(self, value):
+        """
+        Setter function for the private attribute size
+
+        Args:
+            value (int): value to be set for size
+
+        Returns:
+        """
+        if type(value) is not int:
+            raise TypeError("size must be an integer")
+        if value < 0:
+            raise ValueError("size must be >= 0")
