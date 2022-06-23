@@ -43,7 +43,7 @@ class Square:
             raise TypeError("size must be an integer")
 
     @property
-    def position(slef):
+    def position(self):
         """
         Getter function for the private attribute position
         """
