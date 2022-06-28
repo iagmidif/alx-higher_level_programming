@@ -1,0 +1,71 @@
+The module ``101-lazy_matrix_mul.py``
+====================================
+
+Using ``lazy_matrix_mul``
+------------------------
+
+First import ``lazy_matrix_mul``:
+
+	>>> lazy_matrix_mul = __import__('101-lazy_matrix_mul').lazy_matrix_mul
+
+Now use it:
+
+	>>> print(lazy_matrix_mul([[1, 2], [3, 4]], [[1, 2], [3, 4]]))
+	[[ 7 10]
+	 [15 22]]
+	>>> print(lazy_matrix_mul([[1, 2]], [[3, 4], [5, 6]]))
+	[[13 16]]
+	>>> print(lazy_matrix_mul([[1, 2], [3, 4], [5, 6]], [[1, 2, 3, 4], [5, 6, 7, 8]]))
+	[[11 14 17 20]
+	 [23 30 37 44]
+	 [35 46 57 68]]
+	>>> print(lazy_matrix_mul("hello", [[1], [2]]))
+	Traceback (most recent call last):
+		...
+	TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('<U5') dtype('<U5') dtype('<U5')
+	>>> print(lazy_matrix_mul([[1], [2]], "hello"))
+	Traceback (most recent call last):
+		...
+	TypeError: ufunc 'multiply' did not contain a loop with signature matching types dtype('<U5') dtype('<U5') dtype('<U5')
+	>>> print(lazy_matrix_mul([1, 2], [[1], [2]]))
+	[5]
+	>>> print(lazy_matrix_mul([[1], [2]], [1, 2]))
+	Traceback (most recent call last):
+		...
+	ValueError: shapes (2,1) and (2,) not aligned: 1 (dim 1) != 2 (dim 0)
+	>>> print(lazy_matrix_mul([], [[1], [2]]))
+	Traceback (most recent call last):
+		...
+	ValueError: shapes (0,) and (2,1) not aligned: 0 (dim 0) != 2 (dim 0)
+	>>> print(lazy_matrix_mul([[]], [[1], [2]]))
+	Traceback (most recent call last): 
+		...
+	ValueError: shapes (1,0) and (2,1) not aligned: 0 (dim 1) != 2 (dim 0)
+	>>> print(lazy_matrix_mul([[1], [2]], []))
+	Traceback (most recent call last):
+		...
+	ValueError: shapes (2,1) and (0,) not aligned: 1 (dim 1) != 0 (dim 0)
+	>>> print(lazy_matrix_mul([[1], [2]], [[]])) 
+	[]
+	>>> print(lazy_matrix_mul([[1], ["#"]], [[1, 2]]))
+	Traceback (most recent call last):
+		...
+	ValueError: data type must provide an itemsize
+	>>> print(lazy_matrix_mul([[1], [2]], [[1, "#"]]))
+	Traceback (most recent call last):
+		...
+	ValueError: data type must provide an itemsize
+	>>> print(lazy_matrix_mul([[1], [2.5]], [[1, 2]]))
+	[[1.  2. ]
+	 [2.5 5. ]]
+	>>> print(lazy_matrix_mul([[1], [2]], [[1, 2.5]]))
+	[[1.  2.5]
+	 [2.  5. ]]
+	>>> print(lazy_matrix_mul([[1], [2, 3]], [[1, 2.5]]))
+	Traceback (most recent call last):
+		...
+	ValueError: setting an array element with a sequence.
+	>>> print(lazy_matrix_mul([[1, 2]], [[1, 2]]))
+	Traceback (most recent call last):
+		...
+	ValueError: shapes (1,2) and (1,2) not aligned: 2 (dim 1) != 1 (dim 0)
