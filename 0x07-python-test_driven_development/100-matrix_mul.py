@@ -22,7 +22,7 @@ def matrix_mul(m_a, m_b):
             raise TypeError("m_a must be a list of lists")
     for item in m_b:
         if type(item) is not list:
-            raise TypeError("m_b  must be a list of lists")
+            raise TypeError("m_b must be a list of lists")
     if len(m_a) == 0 or len(m_a[0]) == 0:
         raise ValueError("m_a can't be empty")
     if len(m_b) == 0 or len(m_b[0]) == 0:
@@ -58,7 +58,7 @@ def multiply_matrices(m_a, m_b):
     Returns:
         the multiplication of the two matrices m_a and m_b
     """
-    result = [ [] for _ in range(len(m_a)) ]
+    result = [[] for _ in range(len(m_a))]
     for i in range(len(m_a)):
         for j in range(len(m_b[0])):
             n = 0
