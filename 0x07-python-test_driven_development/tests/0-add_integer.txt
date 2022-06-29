@@ -39,3 +39,23 @@ Now use it:
 	Traceback (most recent call last):
 		...
 	TypeError: b must be an integer
+
+	>>> print(add_integer(float('inf'), 3))
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
+	
+	>>> print(add_integer(100, float('inf')))
+	Traceback (most recent call last):
+		...
+	TypeError: b must be an integer
+	
+	>>> print(add_integer(-float('inf'), 3))
+	Traceback (most recent call last):
+		...
+	TypeError: a must be an integer
+
+	>>> print(add_integer(100, -float('inf')))
+	Traceback (most recent call last):
+		...
+	TypeError: b must be an integer
