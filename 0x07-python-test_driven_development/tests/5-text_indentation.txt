@@ -16,38 +16,40 @@ Now use it:
 	... stadia confecimus. Sin aliud quid voles, postea. Quae animi affectio suum \
 	... cuique tribuens atque hanc, quam dico. Utinam quidem dicerent alium alio \
 	... beatiorem! Iam ruinas videres.""")
-	Loremipsumdolorsitamet,consecteturadipiscingelit.
+	Lorem ipsum dolor sit amet, consectetur adipiscing elit.
 	<BLANKLINE>
-	Quonammodo?
+	Quonam modo?
 	<BLANKLINE>
-	Utrumigiturtibilitteramvideorantotaspaginascommovere?
+	Utrum igitur tibi litteram videor an totas paginas commovere?
 	<BLANKLINE>
-	Nonautemhoc:
+	Non autem hoc:
 	<BLANKLINE>
-	igiturneilludquidem.
+	igitur ne illud quidem.
 	<BLANKLINE>
-	Fortasseidoptimum,sedubiillud:
+	Fortasse id optimum, sed ubi illud:
 	<BLANKLINE>
-	Plussempervoluptatis?
+	Plus semper voluptatis?
 	<BLANKLINE>
-	Teneo,inquit,finemillividerinihildolere.
+	Teneo, inquit, finem illi videri nihil dolere.
 	<BLANKLINE>
-	Transferidemadmodestiamveltemperantiam,quaeestmoderatiocupiditatumrationioboediens.
+	Transfer idem ad modestiam vel temperantiam, quae est moderatio cupiditatum rationi oboediens.
 	<BLANKLINE>
-	Siiddicis,vicimus.
+	Si id dicis, vicimus.
 	<BLANKLINE>
-	IndesermonevariosexillaaDipylostadiaconfecimus.
+	Inde sermone vario sex illa a Dipylo stadia confecimus.
 	<BLANKLINE>
-	Sinaliudquidvoles,postea.
+	Sin aliud quid voles, postea.
 	<BLANKLINE>
-	Quaeanimiaffectiosuumcuiquetribuensatquehanc,quamdico.
+	Quae animi affectio suum cuique tribuens atque hanc, quam dico.
 	<BLANKLINE>
-	Utinamquidemdicerentaliumaliobeatiorem!Iamruinasvideres.
+	Utinam quidem dicerent alium alio beatiorem! Iam ruinas videres.
 	<BLANKLINE>
 	>>> text_indentation(12)
 	Traceback (most recent call last):
 		...
 	TypeError: text must be a string
+	>>> text_indentation("Holberton School ")
+	Holberton School
 	>>> text_indentation()
 	Traceback (most recent call last):
 		...
