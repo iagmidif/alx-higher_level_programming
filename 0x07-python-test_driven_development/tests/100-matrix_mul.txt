@@ -31,7 +31,7 @@ Now use it:
 	>>> print(matrix_mul([[1], [2]], [1, 2]))
 	Traceback (most recent call last):
 		...
-	TypeError: m_b  must be a list of lists
+	TypeError: m_b must be a list of lists
 	>>> print(matrix_mul([], [[1], [2]]))
 	Traceback (most recent call last):
 		...
