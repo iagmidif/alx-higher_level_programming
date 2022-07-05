@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-""" Module that have a function that uses type() 
+""" Module that have a function that uses type()
 """
 
 
