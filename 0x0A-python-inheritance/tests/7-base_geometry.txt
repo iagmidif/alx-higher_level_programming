@@ -33,6 +33,10 @@ Now use it:
 	Traceback (most recent call last):
 		...
 	TypeError: name must be an integer
+	>>> bg.integer_validator("name", 1.2)
+	Traceback (most recent call last):
+		...
+	TypeError: name must be an integer
 	>>> bg.integer_validator("age", 0)
 	Traceback (most recent call last):
 		...
@@ -50,3 +54,7 @@ Now use it:
 	Traceback (most recent call last):
 		...
 	TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+	>>> bg.area()
+	Traceback (most recent call last):
+		...
+	Exception: area() is not implemented
