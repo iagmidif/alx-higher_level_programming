@@ -10,6 +10,6 @@ class MyInt(int):
         """Defines the == behaviour"""
         return int(self) != other
 
-    def __ne__(self):
+    def __ne__(self, other):
         """Defines the != behaviour"""
         return int(self) == other
