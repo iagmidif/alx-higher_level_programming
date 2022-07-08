@@ -100,3 +100,6 @@ class TestRectangleAttributes(unittest.TestCase):
     def test_negative_y(self):
         args = (1, 1, 0, -1)
         self.assertRaises(ValueError, Rectangle, *args)
+
+    def test_area(self):
+        self.assertEqual(Rectangle(10, 2).area(), 20)
