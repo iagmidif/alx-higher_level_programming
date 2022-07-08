@@ -12,10 +12,10 @@ class TestIdAssignments(unittest.TestCase):
 
     def test_id_unprovided(self):
         self.assertEqual(Base().id, 1)
-        
+
     def test_id_None(self):
         self.assertEqual(Base(None).id, 1)
-        
+
     def test_ints(self):
         self.assertEqual(Base(0).id, 0)
         self.assertEqual(Base(12).id, 12)
@@ -28,6 +28,7 @@ class TestIdAssignments(unittest.TestCase):
         self.assertEqual(Base(-12).id, -12)
         self.assertEqual(Base().id, 3)
         self.assertEqual(Base(98).id, 98)
+
 
 if __name__ == '__main__':
     unittest.main()
