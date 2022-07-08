@@ -13,8 +13,8 @@ class Base:
     def __init__(self, id=None):
         """Class constructor function"""
 
-        if id is None:
+        if id == None:
             Base.__nb_objects += 1
-            self.id = self.__nb_objects
+            self.id = Base.__nb_objects
         else:
             self.id = id
