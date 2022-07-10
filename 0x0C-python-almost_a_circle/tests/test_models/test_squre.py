@@ -124,3 +124,61 @@ class TestSquareAttributes(TestCase):
         with patch('sys.stdout', new=StringIO()) as fake_out:
             r1.display()
             self.assertEqual(fake_out.getvalue(), expected)
+
+
+class TestSquareUpdateArgs(TestCase):
+
+    def setUp(self):
+        Base._Base__nb_objects = 0
+        self.r1 = Square(10, 10, 10, 10)
+
+    def test_update_id_none_args(self):
+        self.r1.update(None)
+        self.assertEqual(str(self.r1), "[Square] (1) 10/10 - 10")
+
+    def test_update_id_arg(self):
+        self.r1.update(89)
+        self.assertEqual(str(self.r1), "[Square] (89) 10/10 - 10")
+
+    def test_update_size(self):
+        self.r1.update(89, 2)
+        self.assertEqual(str(self.r1), "[Square] (89) 10/10 - 2")
+
+    def test_update_three_args(self):
+        self.r1.update(89, 2, 4)
+        self.assertEqual(str(self.r1), "[Square] (89) 4/10 - 2")
+
+    def test_update_five_args(self):
+        self.r1.update(89, 2, 4, 5)
+        self.assertEqual(str(self.r1), "[Square] (89) 4/5 - 2")
+
+
+class TestSquareUpdateKwargs(TestCase):
+
+    def setUp(self):
+        Base._Base__nb_objects = 0
+        self.r1 = Square(10, 10, 10, 10)
+
+    def test_update_id_none_kwargs(self):
+        self.r1.update(id=None)
+        self.assertEqual(str(self.r1), "[Square] (1) 10/10 - 10")
+
+    def test_update_id_kwargs(self):
+        self.r1.update(id=89)
+        self.assertEqual(str(self.r1), "[Square] (89) 10/10 - 10")
+
+    def test_update_two_kwargs(self):
+        self.r1.update(id=89, size=2)
+        self.assertEqual(str(self.r1), "[Square] (89) 10/10 - 2")
+
+    def test_update_three_kwargs(self):
+        self.r1.update(id=89, size=2, x=4)
+        self.assertEqual(str(self.r1), "[Square] (89) 4/10 - 2")
+
+    def test_update_four_kwargs(self):
+        self.r1.update(id=89, size=2, x=4, y=5)
+        self.assertEqual(str(self.r1), "[Square] (89) 4/5 - 2")
+
+    def test_update_too_many_kwargs(self):
+        self.r1.update(id=89, size=2, x=4, y=5, hello=1, school=5)
+        self.assertEqual(str(self.r1), "[Square] (89) 4/5 - 2")
