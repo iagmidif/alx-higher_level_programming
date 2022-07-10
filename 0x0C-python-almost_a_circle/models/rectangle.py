@@ -70,7 +70,8 @@ class Rectangle(Base):
     def __str__(self):
         """Sets the str/print behaviour of the Rectangle."""
         return "[Rectangle] ({}) {}/{} - {}/{}".format(self.id, self.x,
-                self.y, self.width, self.height)
+                                                       self.y, self.width,
+                                                       self.height)
 
     def area(self):
         """Returns the area of the Rectangle"""
