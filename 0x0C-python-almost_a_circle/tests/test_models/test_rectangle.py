@@ -108,22 +108,22 @@ class TestRectangleAttributes(TestCase):
 
     def test_display_1x1(self):
         expected = "#\n"
-        r1 = Rectangle(1 ,1)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        r1 = Rectangle(1, 1)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r1.display()
             self.assertEqual(fake_out.getvalue(), expected)
 
     def test_display_2x3(self):
         expected = "##\n##\n##\n"
-        r1 = Rectangle(2 ,3)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        r1 = Rectangle(2, 3)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r1.display()
             self.assertEqual(fake_out.getvalue(), expected)
 
     def test_print(self):
         expected = "[Rectangle] (1) 1/2 - 3/6\n"
         r1 = Rectangle(3, 6, 1, 2)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             print(r1)
             self.assertEqual(fake_out.getvalue(), expected)
 
@@ -131,50 +131,51 @@ class TestRectangleAttributes(TestCase):
         expected = "[Rectangle] (11) 1/0 - 2/4"
         r1 = Rectangle(2, 4, 1, 0, 11)
         self.assertEqual(str(r1), expected)
-    
+
     def test_display_1x1_2_2(self):
         expected = "\n\n  #\n"
-        r1 = Rectangle(1 ,1, 2, 2)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        r1 = Rectangle(1, 1, 2, 2)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r1.display()
             self.assertEqual(fake_out.getvalue(), expected)
 
     def test_display_2x3_3_4(self):
         expected = "\n\n\n\n   ##\n   ##\n   ##\n"
-        r1 = Rectangle(2 ,3, 3, 4)
-        with patch('sys.stdout', new = StringIO()) as fake_out:
+        r1 = Rectangle(2, 3, 3, 4)
+        with patch('sys.stdout', new=StringIO()) as fake_out:
             r1.display()
             self.assertEqual(fake_out.getvalue(), expected)
+
 
 class TestRectangleUpdateArgs(TestCase):
 
     def setUp(self):
         Base._Base__nb_objects = 0
         self.r1 = Rectangle(10, 10, 10, 10, 10)
-    
+
     def test_update_id_none_args(self):
         self.r1.update(None)
-        self.assertEqual(str(self.r1),"[Rectangle] (1) 10/10 - 10/10")
-    
+        self.assertEqual(str(self.r1), "[Rectangle] (1) 10/10 - 10/10")
+
     def test_update_id_arg(self):
         self.r1.update(89)
-        self.assertEqual(str(self.r1),"[Rectangle] (89) 10/10 - 10/10")
-    
+        self.assertEqual(str(self.r1), "[Rectangle] (89) 10/10 - 10/10")
+
     def test_update_two_args(self):
         self.r1.update(89, 2)
-        self.assertEqual(str(self.r1),"[Rectangle] (89) 10/10 - 2/10")
-    
+        self.assertEqual(str(self.r1), "[Rectangle] (89) 10/10 - 2/10")
+
     def test_update_three_args(self):
         self.r1.update(89, 2, 3)
-        self.assertEqual(str(self.r1),"[Rectangle] (89) 10/10 - 2/3")
-    
+        self.assertEqual(str(self.r1), "[Rectangle] (89) 10/10 - 2/3")
+
     def test_update_four_args(self):
         self.r1.update(89, 2, 3, 4)
-        self.assertEqual(str(self.r1),"[Rectangle] (89) 4/10 - 2/3")
-    
+        self.assertEqual(str(self.r1), "[Rectangle] (89) 4/10 - 2/3")
+
     def test_update_five_args(self):
         self.r1.update(89, 2, 3, 4, 5)
-        self.assertEqual(str(self.r1),"[Rectangle] (89) 4/5 - 2/3")
+        self.assertEqual(str(self.r1), "[Rectangle] (89) 4/5 - 2/3")
 
 
 class TestRectangleUpdateKwargs(TestCase):
@@ -182,31 +183,31 @@ class TestRectangleUpdateKwargs(TestCase):
     def setUp(self):
         Base._Base__nb_objects = 0
         self.r1 = Rectangle(10, 10, 10, 10, 10)
-    
+
     def test_update_id_none_kwargs(self):
         self.r1.update(id=None)
-        self.assertEqual(str(self.r1),"[Rectangle] (1) 10/10 - 10/10")
-    
+        self.assertEqual(str(self.r1), "[Rectangle] (1) 10/10 - 10/10")
+
     def test_update_id_kwargs(self):
         self.r1.update(id=89)
-        self.assertEqual(str(self.r1),"[Rectangle] (89) 10/10 - 10/10")
-    
+        self.assertEqual(str(self.r1), "[Rectangle] (89) 10/10 - 10/10")
+
     def test_update_two_kwargs(self):
         self.r1.update(id=89, width=2)
-        self.assertEqual(str(self.r1),"[Rectangle] (89) 10/10 - 2/10")
-    
+        self.assertEqual(str(self.r1), "[Rectangle] (89) 10/10 - 2/10")
+
     def test_update_three_kwargs(self):
         self.r1.update(id=89, width=2, height=3)
-        self.assertEqual(str(self.r1),"[Rectangle] (89) 10/10 - 2/3")
-    
+        self.assertEqual(str(self.r1), "[Rectangle] (89) 10/10 - 2/3")
+
     def test_update_four_kwargs(self):
         self.r1.update(id=89, width=2, height=3, x=4)
-        self.assertEqual(str(self.r1),"[Rectangle] (89) 4/10 - 2/3")
-    
+        self.assertEqual(str(self.r1), "[Rectangle] (89) 4/10 - 2/3")
+
     def test_update_five_kwargs(self):
         self.r1.update(id=89, width=2, height=3, x=4, y=5)
-        self.assertEqual(str(self.r1),"[Rectangle] (89) 4/5 - 2/3")
-    
+        self.assertEqual(str(self.r1), "[Rectangle] (89) 4/5 - 2/3")
+
     def test_update_too_many_kwargs(self):
         self.r1.update(id=89, width=2, height=3, x=4, y=5, hello=1, school=5)
-        self.assertEqual(str(self.r1),"[Rectangle] (89) 4/5 - 2/3")
+        self.assertEqual(str(self.r1), "[Rectangle] (89) 4/5 - 2/3")
