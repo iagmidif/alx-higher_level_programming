@@ -131,3 +131,17 @@ class TestRectangleAttributes(TestCase):
         expected = "[Rectangle] (11) 1/0 - 2/4"
         r1 = Rectangle(2, 4, 1, 0, 11)
         self.assertEqual(str(r1), expected)
+    
+    def test_display_1x1_2_2(self):
+        expected = "\n\n  #\n"
+        r1 = Rectangle(1 ,1, 2, 2)
+        with patch('sys.stdout', new = StringIO()) as fake_out:
+            r1.display()
+            self.assertEqual(fake_out.getvalue(), expected)
+
+    def test_display_2x3_3_4(self):
+        expected = "\n\n\n\n   ##\n   ##\n   ##\n"
+        r1 = Rectangle(2 ,3, 3, 4)
+        with patch('sys.stdout', new = StringIO()) as fake_out:
+            r1.display()
+            self.assertEqual(fake_out.getvalue(), expected)
