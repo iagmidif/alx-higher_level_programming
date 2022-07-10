@@ -152,11 +152,11 @@ class TestRectangleUpdateArgs(TestCase):
         Base._Base__nb_objects = 0
         self.r1 = Rectangle(10, 10, 10, 10, 10)
     
-    def test_update_zero_args(self):
+    def test_update_id_none_args(self):
         self.r1.update(None)
         self.assertEqual(self.r1.id, 1)
     
-    def test_update_one_arg(self):
+    def test_update_id_arg(self):
         self.r1.update(89)
         self.assertEqual(self.r1.id, 89)
     
@@ -180,6 +180,47 @@ class TestRectangleUpdateArgs(TestCase):
     
     def test_update_five_args(self):
         self.r1.update(89, 2, 3, 4, 5)
+        self.assertEqual(self.r1.id, 89)
+        self.assertEqual(self.r1.width, 2)
+        self.assertEqual(self.r1.height, 3)
+        self.assertEqual(self.r1.x, 4)
+        self.assertEqual(self.r1.y, 5)
+
+
+class TestRectangleUpdateKwargs(TestCase):
+
+    def setUp(self):
+        Base._Base__nb_objects = 0
+        self.r1 = Rectangle(10, 10, 10, 10, 10)
+    
+    def test_update_id_none_kwargs(self):
+        self.r1.update(id=None)
+        self.assertEqual(self.r1.id, 1)
+    
+    def test_update_id_kwargs(self):
+        self.r1.update(id=89)
+        self.assertEqual(self.r1.id, 89)
+    
+    def test_update_two_kwargs(self):
+        self.r1.update(id=89, width=2)
+        self.assertEqual(self.r1.id, 89)
+        self.assertEqual(self.r1.width, 2)
+    
+    def test_update_three_kwargs(self):
+        self.r1.update(id=89, width=2, height=3)
+        self.assertEqual(self.r1.id, 89)
+        self.assertEqual(self.r1.width, 2)
+        self.assertEqual(self.r1.height, 3)
+    
+    def test_update_four_kwargs(self):
+        self.r1.update(id=89, width=2, height=3, x=4)
+        self.assertEqual(self.r1.id, 89)
+        self.assertEqual(self.r1.width, 2)
+        self.assertEqual(self.r1.height, 3)
+        self.assertEqual(self.r1.x, 4)
+    
+    def test_update_five_kwargs(self):
+        self.r1.update(id=89, width=2, height=3, x=4, y=5)
         self.assertEqual(self.r1.id, 89)
         self.assertEqual(self.r1.width, 2)
         self.assertEqual(self.r1.height, 3)

@@ -83,12 +83,15 @@ class Rectangle(Base):
             print(" " * self.x, end='')
             print("#" * self.__width)
 
-    def update(self, *args):
+    def update(self, *args, **kwargs):
         """This method is used to update the Rectangle attributes"""
         attributes = {}
-        keys = ["id", "width", "height", "x", "y"]
-        for i in range(len(args) if len(args) < 5 else 5):
-            attributes[keys[i]] = args[i]
+        if args is not None and len(args) > 0:
+            keys = ["id", "width", "height", "x", "y"]
+            for i in range(len(args) if len(args) < 5 else 5):
+                attributes[keys[i]] = args[i]
+        else:
+            attributes = kwargs
 
         if len(attributes) > 0:
             for key, value in attributes.items():
