@@ -3,10 +3,12 @@
 """
 from models.base import Base
 from models.rectangle import Rectangle
-import unittest
+from unittest import TestCase
+from unittest.mock import patch
+from io import StringIO
 
 
-class TestRectangleAttributes(unittest.TestCase):
+class TestRectangleAttributes(TestCase):
 
     def setUp(self):
         Base._Base__nb_objects = 0
@@ -103,3 +105,17 @@ class TestRectangleAttributes(unittest.TestCase):
 
     def test_area(self):
         self.assertEqual(Rectangle(10, 2).area(), 20)
+
+    def test_display_1x1(self):
+        expected = "#\n"
+        r1 = Rectangle(1 ,1)
+        with patch('sys.stdout', new = StringIO()) as fake_out:
+            r1.display()
+            self.assertEqual(fake_out.getvalue(), expected)
+
+    def test_display_2x3(self):
+        expected = "##\n##\n##\n"
+        r1 = Rectangle(2 ,3)
+        with patch('sys.stdout', new = StringIO()) as fake_out:
+            r1.display()
+            self.assertEqual(fake_out.getvalue(), expected)
