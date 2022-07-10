@@ -119,3 +119,15 @@ class TestRectangleAttributes(TestCase):
         with patch('sys.stdout', new = StringIO()) as fake_out:
             r1.display()
             self.assertEqual(fake_out.getvalue(), expected)
+
+    def test_print(self):
+        expected = "[Rectangle] (1) 1/2 - 3/6\n"
+        r1 = Rectangle(3, 6, 1, 2)
+        with patch('sys.stdout', new = StringIO()) as fake_out:
+            print(r1)
+            self.assertEqual(fake_out.getvalue(), expected)
+
+    def test_str(self):
+        expected = "[Rectangle] (11) 1/0 - 2/4"
+        r1 = Rectangle(2, 4, 1, 0, 11)
+        self.assertEqual(str(r1), expected)
