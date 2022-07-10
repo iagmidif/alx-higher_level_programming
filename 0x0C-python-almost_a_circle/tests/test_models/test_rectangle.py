@@ -154,37 +154,27 @@ class TestRectangleUpdateArgs(TestCase):
     
     def test_update_id_none_args(self):
         self.r1.update(None)
-        self.assertEqual(self.r1.id, 1)
+        self.assertEqual(str(self.r1),"[Rectangle] (1) 10/10 - 10/10")
     
     def test_update_id_arg(self):
         self.r1.update(89)
-        self.assertEqual(self.r1.id, 89)
+        self.assertEqual(str(self.r1),"[Rectangle] (89) 10/10 - 10/10")
     
     def test_update_two_args(self):
         self.r1.update(89, 2)
-        self.assertEqual(self.r1.id, 89)
-        self.assertEqual(self.r1.width, 2)
+        self.assertEqual(str(self.r1),"[Rectangle] (89) 10/10 - 2/10")
     
     def test_update_three_args(self):
         self.r1.update(89, 2, 3)
-        self.assertEqual(self.r1.id, 89)
-        self.assertEqual(self.r1.width, 2)
-        self.assertEqual(self.r1.height, 3)
+        self.assertEqual(str(self.r1),"[Rectangle] (89) 10/10 - 2/3")
     
     def test_update_four_args(self):
         self.r1.update(89, 2, 3, 4)
-        self.assertEqual(self.r1.id, 89)
-        self.assertEqual(self.r1.width, 2)
-        self.assertEqual(self.r1.height, 3)
-        self.assertEqual(self.r1.x, 4)
+        self.assertEqual(str(self.r1),"[Rectangle] (89) 4/10 - 2/3")
     
     def test_update_five_args(self):
         self.r1.update(89, 2, 3, 4, 5)
-        self.assertEqual(self.r1.id, 89)
-        self.assertEqual(self.r1.width, 2)
-        self.assertEqual(self.r1.height, 3)
-        self.assertEqual(self.r1.x, 4)
-        self.assertEqual(self.r1.y, 5)
+        self.assertEqual(str(self.r1),"[Rectangle] (89) 4/5 - 2/3")
 
 
 class TestRectangleUpdateKwargs(TestCase):
@@ -195,34 +185,28 @@ class TestRectangleUpdateKwargs(TestCase):
     
     def test_update_id_none_kwargs(self):
         self.r1.update(id=None)
-        self.assertEqual(self.r1.id, 1)
+        self.assertEqual(str(self.r1),"[Rectangle] (1) 10/10 - 10/10")
     
     def test_update_id_kwargs(self):
         self.r1.update(id=89)
-        self.assertEqual(self.r1.id, 89)
+        self.assertEqual(str(self.r1),"[Rectangle] (89) 10/10 - 10/10")
     
     def test_update_two_kwargs(self):
         self.r1.update(id=89, width=2)
-        self.assertEqual(self.r1.id, 89)
-        self.assertEqual(self.r1.width, 2)
+        self.assertEqual(str(self.r1),"[Rectangle] (89) 10/10 - 2/10")
     
     def test_update_three_kwargs(self):
         self.r1.update(id=89, width=2, height=3)
-        self.assertEqual(self.r1.id, 89)
-        self.assertEqual(self.r1.width, 2)
-        self.assertEqual(self.r1.height, 3)
+        self.assertEqual(str(self.r1),"[Rectangle] (89) 10/10 - 2/3")
     
     def test_update_four_kwargs(self):
         self.r1.update(id=89, width=2, height=3, x=4)
-        self.assertEqual(self.r1.id, 89)
-        self.assertEqual(self.r1.width, 2)
-        self.assertEqual(self.r1.height, 3)
-        self.assertEqual(self.r1.x, 4)
+        self.assertEqual(str(self.r1),"[Rectangle] (89) 4/10 - 2/3")
     
     def test_update_five_kwargs(self):
         self.r1.update(id=89, width=2, height=3, x=4, y=5)
-        self.assertEqual(self.r1.id, 89)
-        self.assertEqual(self.r1.width, 2)
-        self.assertEqual(self.r1.height, 3)
-        self.assertEqual(self.r1.x, 4)
-        self.assertEqual(self.r1.y, 5)
+        self.assertEqual(str(self.r1),"[Rectangle] (89) 4/5 - 2/3")
+    
+    def test_update_too_many_kwargs(self):
+        self.r1.update(id=89, width=2, height=3, x=4, y=5, hello=1, school=5)
+        self.assertEqual(str(self.r1),"[Rectangle] (89) 4/5 - 2/3")
