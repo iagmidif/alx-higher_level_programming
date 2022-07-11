@@ -2,10 +2,12 @@
 """unittest test cases for the module base.py
 """
 from models.base import Base
-import unittest
+from models.rectangle import Rectangle
+from models.square import Square
+from unittest import TestCase
 
 
-class TestIdAssignments(unittest.TestCase):
+class TestIdAssignments(TestCase):
 
     def setUp(self):
         Base._Base__nb_objects = 0
@@ -28,6 +30,46 @@ class TestIdAssignments(unittest.TestCase):
         self.assertEqual(Base(-12).id, -12)
         self.assertEqual(Base().id, 3)
         self.assertEqual(Base(98).id, 98)
+
+
+class TestToJSONString(TestCase):
+
+    def setUp(self):
+        Base._Base__nb_objects = 0
+
+    def test_to_json_return_type(self):
+        r1 = Rectangle(10, 10)
+        s1 = Square(1)
+        self.assertIs(str, type(Base.to_json_string([r1.to_dictionary()])))
+        self.assertIs(str, type(Base.to_json_string([s1.to_dictionary()])))
+
+    def test_rectangle_to_json(self):
+        r1 = Rectangle(10, 7, 2, 8)
+        self.assertEqual(len(Base.to_json_string([r1.to_dictionary()])), 53)
+
+    def test_square_to_json(self):
+        s1 = Square(2, 3, 4, 5)
+        self.assertEqual(len(Base.to_json_string([s1.to_dictionary()])), 38)
+
+    def test_to_json_string_multi_dicts(self):
+        r1 = Rectangle(10, 7, 2, 8)
+        s1 = Square(2, 3, 4, 5)
+        dicts = [r1.to_dictionary(), s1.to_dictionary()]
+        self.assertEqual(len(Base.to_json_string(dicts)), 91)
+
+    def test_to_json_string_none(self):
+        self.assertEqual(Base.to_json_string(None), '[]')
+
+    def test_to_json_string_empty_list(self):
+        self.assertEqual(Base.to_json_string([]), '[]')
+
+    def test_ro_json_string_no_args(self):
+        with self.assertRaises(TypeError):
+            Base.to_json_string()
+
+    def test_ro_json_string_too_many_args(self):
+        with self.assertRaises(TypeError):
+            Base.to_json_string("hello", [1, 2])
 
 
 if __name__ == '__main__':
