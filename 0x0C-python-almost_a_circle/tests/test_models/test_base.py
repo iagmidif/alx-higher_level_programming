@@ -5,7 +5,7 @@ from models.base import Base
 from models.rectangle import Rectangle
 from models.square import Square
 from unittest import TestCase
-
+from os import remove
 
 class TestIdAssignments(TestCase):
 
@@ -77,11 +77,11 @@ class TestSaveToFile(TestCase):
     def tearDown(self):
         Base._Base__nb_objects = 0
         try:
-            os.remove("Rectangle.json")
+            remove("Rectangle.json")
         except Exception:
             pass
         try:
-            os.remove("Square.json")
+            remove("Square.json")
         except Exception:
             pass
 
@@ -131,6 +131,59 @@ class TestSaveToFile(TestCase):
     def test_save_to_file_too_many_args(self):
         with self.assertRaises(TypeError):
             Rectangle.save_to_file("hello", [1, 2])
+
+
+class TestFromJsonString(TestCase):
+
+    def test_from_json_string_return_type(self):
+        list_input = [{'id': 89, 'width': 10, 'height': 10}]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertIs(list, type(list_output))
+
+    def test_from_json_string_rectangle(self):
+        list_input = [{'id': 89, 'width': 10, 'height': 10}]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(list_input, list_output)
+
+    def test_from_json_string_square(self):
+        list_input = [{'id': 89, 'size': 10}]
+        json_list_input = Square.to_json_string(list_input)
+        list_output = Square.from_json_string(json_list_input)
+        self.assertEqual(list_input, list_output)
+
+    def test_from_json_string_multi_rectangles(self):
+        list_input = [
+            {'id': 89, 'width': 10, 'height': 10},
+            {'id': 10, 'width': 1, 'height': 2}
+        ]
+        json_list_input = Rectangle.to_json_string(list_input)
+        list_output = Rectangle.from_json_string(json_list_input)
+        self.assertEqual(list_input, list_output)
+
+    def test_from_json_string_multi_square(self):
+        list_input = [
+            {'id': 89, 'size': 1},
+            {'id': 10, 'size': 2}
+        ]
+        json_list_input = Square.to_json_string(list_input)
+        list_output = Square.from_json_string(json_list_input)
+        self.assertEqual(list_input, list_output)
+
+    def test_from_json_string_none(self):
+        self.assertEqual([], Base.from_json_string(None))
+
+    def test_from_json_string_empty_list(self):
+        self.assertEqual([], Base.from_json_string('[]'))
+
+    def test_from_json_string_no_args(self):
+        with self.assertRaises(TypeError):
+            Base.from_json_string()
+
+    def test_from_json_string_too_many_args(self):
+        with self.assertRaises(TypeError):
+            Base.from_json_string("hello", [1, 2])
 
 
 if __name__ == '__main__':
