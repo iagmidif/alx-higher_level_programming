@@ -7,6 +7,7 @@ from models.square import Square
 from unittest import TestCase
 from os import remove
 
+
 class TestIdAssignments(TestCase):
 
     def setUp(self):
@@ -184,6 +185,19 @@ class TestFromJsonString(TestCase):
     def test_from_json_string_too_many_args(self):
         with self.assertRaises(TypeError):
             Base.from_json_string("hello", [1, 2])
+
+
+class TestCreate(TestCase):
+
+    def test_create_rectangle(self):
+        dct = {'width': 1, 'height': 2, 'x': 0, 'y': 0, 'id': 89}
+        r = Rectangle.create(**dct)
+        self.assertDictEqual(r.to_dictionary(), dct)
+
+    def test_create_basic_square(self):
+        dct = {'size': 1, 'x': 2, 'y': 3, 'id': 89}
+        s = Square.create(**dct)
+        self.assertDictEqual(s.to_dictionary(), dct)
 
 
 if __name__ == '__main__':
