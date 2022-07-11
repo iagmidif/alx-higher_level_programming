@@ -182,3 +182,18 @@ class TestSquareUpdateKwargs(TestCase):
     def test_update_too_many_kwargs(self):
         self.r1.update(id=89, size=2, x=4, y=5, hello=1, school=5)
         self.assertEqual(str(self.r1), "[Square] (89) 4/5 - 2")
+
+
+class Test_Square_to_dict(TestCase):
+
+    def setUp(self):
+        Base._Base__nb_objects = 0
+
+    def test_to_dictionary(self):
+        r1 = Square(3, 4, 5, 9)
+        expected = {'size': 3, 'x': 4, 'y': 5, 'id': 9}
+        self.assertDictEqual(r1.to_dictionary(), expected)
+
+    def test_to_dictionary_with_args(self):
+        with self.assertRaises(TypeError):
+            Square(2, 4, 1, 2, 42).to_dictionary(42)
