@@ -200,5 +200,47 @@ class TestCreate(TestCase):
         self.assertDictEqual(s.to_dictionary(), dct)
 
 
+class TestLoadFromFile(TestCase):
+
+    def tearDown(self):
+        Base._Base__nb_objects = 0
+        try:
+            remove("Rectangle.json")
+        except Exception:
+            pass
+        try:
+            remove("Square.json")
+        except Exception:
+            pass
+
+    def test_load_from_file_rectangles(self):
+        r1 = Rectangle(10, 7, 2, 8, 98)
+        r2 = Rectangle(98, 8, 2, 7, 10)
+        Rectangle.save_to_file([r1, r2])
+        lst = Rectangle.load_from_file()
+        self.assertDictEqual(lst[0].to_dictionary(), r1.to_dictionary())
+        self.assertEqual(type(lst[0]), Rectangle)
+        self.assertDictEqual(lst[1].to_dictionary(), r2.to_dictionary())
+        self.assertEqual(type(lst[1]), Rectangle)
+
+    def test_load_from_file_squares(self):
+        s1 = Square(2, 3, 4, 5)
+        s2 = Square(5, 4, 3, 2)
+        Square.save_to_file([s1, s2])
+        lst = Square.load_from_file()
+        self.assertDictEqual(lst[0].to_dictionary(), s1.to_dictionary())
+        self.assertEqual(type(lst[0]), Square)
+        self.assertDictEqual(lst[1].to_dictionary(), s2.to_dictionary())
+        self.assertEqual(type(lst[0]), Square)
+
+    def test_load_from_file_no_file(self):
+        lst = Rectangle.load_from_file()
+        self.assertEqual(lst, [])
+
+    def test_load_from_file_too_many_args(self):
+        with self.assertRaises(TypeError):
+            Base.load_from_file("hello", [1, 2])
+
+
 if __name__ == '__main__':
     unittest.main()
