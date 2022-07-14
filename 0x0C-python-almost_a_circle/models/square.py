@@ -24,7 +24,7 @@ class Square(Rectangle):
     @size.setter
     def size(self, value):
         self.width = value
-        self.width = value
+        self.height = value
 
     def update(self, *args, **kwargs):
         """This method is used to update the Square attributes"""
