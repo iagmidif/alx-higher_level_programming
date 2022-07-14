@@ -248,7 +248,7 @@ class TestSaveToFileCSV(TestCase):
         Base._Base__nb_objects = 0
         try:
             remove("Rectangle.csv")
-        excepti Exception:
+        except Exception:
             pass
         try:
             remove("Square.csv")
