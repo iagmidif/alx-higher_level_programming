@@ -3,6 +3,7 @@
 """
 import json
 import csv
+import turtle
 
 
 class Base:
@@ -73,9 +74,9 @@ class Base:
             if list_objs is None or len(list_objs) <= 0:
                 f.write("[]")
             else:
-                if cls.__name__ is "Rectangle":
+                if cls.__name__ == "Rectangle":
                     fields = ["id", "width", "height", "x", "y"]
-                elif cls.__name__ is "Square":
+                elif cls.__name__ == "Square":
                     fields = ["id", "size", "x", "y"]
                 writer = csv.DictWriter(f, fieldnames=fields)
                 for obj in list_objs:
@@ -87,9 +88,9 @@ class Base:
         fields = []
         try:
             with open(cls.__name__ + ".csv", "r") as f:
-                if cls.__name__ is "Rectangle":
+                if cls.__name__ == "Rectangle":
                     fields = ["id", "width", "height", "x", "y"]
-                elif cls.__name__ is "Square":
+                elif cls.__name__ == "Square":
                     fields = ["id", "size", "x", "y"]
                 reader = csv.DictReader(f, fieldnames=fields)
                 dcts = [dict([k, int(v)] for k, v in m.items())
@@ -97,3 +98,55 @@ class Base:
                 return [cls.create(**dct) for dct in dcts]
         except IOError:
             return []
+
+    @staticmethod
+    def draw(list_rectangles, list_squares):
+        """Opens a window and draws all the Rectangels and Squares
+        Uses the open library turtle
+        For more on how it works please read the README file
+        on the root of this projects's directory
+        """
+        shapes = []
+        if list_rectangles is not None and len(list_rectangles) > 0:
+            shapes.extend(list_rectangles)
+        if list_squares is not None and len(list_squares) > 0:
+            shapes.extend(list_squares)
+        if len(shapes) > 0:
+            t = turtle.Turtle(visible=False)
+            screen = turtle.Screen()
+            turtle.bgcolor("white")
+            t.color("orange")
+            t.speed(10)
+
+            t.penup()
+            t.goto(10 - screen.window_width() // 2,
+                   screen.window_height() // 2 - 10)
+            t.pendown()
+            highest_height = 0
+            total_height = 0
+            for i in range(len(shapes)):
+                width = shapes[i].width * 2
+                height = shapes[i].height * 2
+                if highest_height < height:
+                    highest_height = height
+                t.begin_fill()
+                for _ in range(2):
+                    t.fd(width)
+                    t.rt(90)
+                    t.fd(height)
+                    t.rt(90)
+                t.end_fill()
+                t.penup()
+                try:
+                    if shapes[i + 1].width * 2 <= (
+                       screen.window_width() // 2 - t.xcor() - width - 15):
+                        t.fd(width + 5)
+                    else:
+                        total_height += highest_height + 5
+                        t.goto(10 - screen.window_width() // 2,
+                               screen.window_height() // 2 - 10 - total_height)
+                        highest_height = 0
+                except IndexError:
+                    pass
+                t.pendown()
+            turtle.done()
