@@ -18,7 +18,7 @@ And also we needed to look onto new concepts to complete this project like:
 - JSON
 
 
-So, the whole project, in short, was about creating a **base class** which is in the file [base.py](https://github.com/iagmidif/alx-higher_level_programming/blob/main/0x0C-python-almost_a_circle/models/base.py), that defines methods and attributes like *object id*, *json serialization*, *json deserialization*, *saving and loading from regular and csv file*, and [draw](https://github.com/iagmidif/alx-higher_level_programming/tree/main/0x0C-python-almost_a_circle#the-draw-method) *(which is detailed below*.
+So, the whole project, in short, was about creating a **base class** which is in the file [base.py](https://github.com/iagmidif/alx-higher_level_programming/blob/main/0x0C-python-almost_a_circle/models/base.py), that defines methods and attributes like *object id*, *json serialization*, *json deserialization*, *saving and loading from regular and csv file*, and *draw (which is detailed below)*.
 
 
 And then creating a **rectangle class** which is in the file [rectangle.py](https://github.com/iagmidif/alx-higher_level_programming/blob/main/0x0C-python-almost_a_circle/models/rectangle.py), that inherits from [Base](https://github.com/iagmidif/alx-higher_level_programming/blob/main/0x0C-python-almost_a_circle/models/base.py) and also defines more methods and attributes like the rectangle's *height*, *width*, *x position*, *y position*, *updating a rectangle*, *serializing*, *and display*.
