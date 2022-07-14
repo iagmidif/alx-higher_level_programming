@@ -29,7 +29,7 @@ Finally, the **square class** which is in the file [square.py](https://github.co
 
 ### The *draw()* method
 
-This static method accepts two arguments *list_rectangles* and *list_square* which as their names suggest, they are list *Rectangle* and list of *Square* objects respectively.
+This static method accepts two arguments `*list_rectangles*` and `*list_square*` which as their names suggest, they are list of *Rectangle* and list of *Square* objects respectively.
 
 
 ```def draw(list_rectangles, list_squares):```
